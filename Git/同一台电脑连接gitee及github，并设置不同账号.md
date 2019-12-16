@@ -62,5 +62,9 @@
 
 打开 Gitee 和 Github 的网站找到设置，再找到 SSH Keys，添加复制的 public key。
 
-![](1.png)![](https://i.imgur.com/BAXYd1w.png)
+![Github上ssh key添加](Git-img/1.png)
+
+![Gitee上ssh key添加](Git-img/2.png)
+
+
 
