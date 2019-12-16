@@ -64,7 +64,66 @@
 
 ![Github上ssh key添加](Git-img/1.png)
 
+
 ![Gitee上ssh key添加](Git-img/2.png)
+
+### 创建配置文件
+
+	# gitee
+	Host gitee.com
+	HostName gitee.com
+	PreferredAuthentications publickey
+	IdentityFile ~/.ssh/id_rsa_gitee
+	
+	# github
+	Host github.com
+	HostName github.com
+	PreferredAuthentications publickey
+	IdentityFile ~/.ssh/id_rsa_github
+
+### 测试连接是否正常
+
+在命令行中输入：
+
+	ssh -T git@github.com
+
+结果：
+
+	Hi yourname! You've successfully authenticated, but GitHub does not provide shell access.
+
+继续在命令行输入：
+
+	ssh -T git@gitee.com
+
+若返回如下内容，则 Gitee 连接正常。
+
+	Welcome to Gitee.com, yourname!
+
+### gitee和github配置不同用户名
+
+如果之前使用过如下命令，则gitee和github上提交代码时，都会显示的是同一个用户名：
+
+	git config --global user.name "xxx"
+	git config --global user.email "xxx"
+
+以上是配置全局的用户名和邮箱。
+
+如果想不同项目配置不同的用户名的话，先进入自己项目根目录，再 `cd .git`
+
+设置本项目的用户名和邮箱
+
+	git config user.name "yourname"
+	git config user.email "youremail"
+
+如果要重设，则可以使用
+
+	git config --global --unset user.name
+	git config --global --unset user.email
+
+查看当前用户名
+
+	git config user.name
+	git config user.email
 
 
 
