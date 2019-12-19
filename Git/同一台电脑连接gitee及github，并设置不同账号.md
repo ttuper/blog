@@ -74,12 +74,27 @@
 	HostName gitee.com
 	PreferredAuthentications publickey
 	IdentityFile ~/.ssh/id_rsa_gitee
-	
+	# User这个值不写的话默认就是git
+	# User xxx 
+
 	# github
 	Host github.com
 	HostName github.com
 	PreferredAuthentications publickey
 	IdentityFile ~/.ssh/id_rsa_github
+	# User这个值不写的话默认就是git
+	# User xxx
+
+
+#### 原理分析
+
+> 1.ssh 客户端是通过类似 **git@github.com:githubUserName/repName.git ** 的地址来识别使用本地的哪个私钥的，地址中的 User 是`@`前面的`git`， Host 是`@`后面的`github.com`。
+> 
+> 2.如果所有账号的 User 和 Host 都为 git 和 github.com，那么就只能使用一个私钥。所以要对User 和 Host 进行配置，让每个账号使用自己的 Host，每个 Host 的域名做 CNAME 解析到对应的地址上去，如上面配置中的`Host github.com`其还是解析到`github.com`，也可以是`Host first.github.com`解析到`github.com`。
+> 
+> 3.配置了别名之后，新的地址就是**git@github.com:githubUserName/repName.git**（在添加远程仓库时使用）。
+> 
+> 这样 ssh 在连接时就可以区别不同的账号了。
 
 ### 测试连接是否正常
 
